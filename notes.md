@@ -128,11 +128,11 @@ In this module we majorly learned how to submit homework of this zoomcamp using 
 
 ## 1.7 Introduction to Numpy
 
- <b>introduction_to_numpy.py in Folder 1.7</b>
+ <b>introduction_to_numpy.ipynb in Folder 1.7</b>
 
 ## 1.8 Linear Algebra Refresher
 
- <b>linear_algebra_refresher.py in Folder 1.8</b>
+ <b>linear_algebra_refresher.ipynb in Folder 1.8</b>
 
 
 <b>1. Vector Operations</b>
@@ -186,3 +186,13 @@ In this module we majorly learned how to submit homework of this zoomcamp using 
 
 
 ![Matrix Inverse Example](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbegin%7Bbmatrix%7D4%267%5C%5C2%266%5Cend%7Bbmatrix%7D%20%5Ctimes%20%5Cbegin%7Bbmatrix%7D0.6%26-0.7%5C%5C-0.2%260.4%5Cend%7Bbmatrix%7D%20%3D%20%5Cbegin%7Bbmatrix%7D1%260%5C%5C0%261%5Cend%7Bbmatrix%7D)
+
+
+
+## 1.9 Introduction to Pandas
+
+ <b>introduction_to_pandas.ipynb in Folder 1.9</b>
+
+## 1.10 Summary of Module-1
+
+Module 1 completed.
