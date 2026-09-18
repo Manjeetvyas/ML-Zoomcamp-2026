@@ -199,5 +199,64 @@ In this module we majorly learned how to submit homework of this zoomcamp using 
 Module 1 completed.
 
 
-# Module 2 -- Car Price Prediction Project
+# Module 2 -- Regression
 
+## 3.1 Project Overview - Car Price prediction Project
+
+### Project Objective
+Predict the price of a car based on a dataset from kaggle using logistic regression.
+
+---
+
+### Project Plan
+1. Data preparation and EDA (Exploratory Data Analysis).
+2. Use Linear Regression for predicting price.
+3. Understand the internals of linear regression.
+4. Evaluating the model with RMSE.
+5. Feature Engineering.
+6. Regularization.
+
+---
+
+## 3.2 Data Preparation
+
+ <b>car_price_prediction_project.ipynb in Folder Module 2</b>
+
+
+## 3.3 Exploratory Data Analysis
+
+ <b>car_price_prediction_project.ipynb in Folder Module 2</b>
+
+## 3.4 Setting up Validation Framework
+
+***First we will split the data into 3 parts-> TRAIN , VALIDATION, TEST***
+
+```mermaid
+flowchart LR
+    subgraph Test
+        Xtest["X_test"]
+        ytest["y_test"]
+    end
+
+    subgraph Validation
+        Xv["X_v"]
+        yv["y_v"]
+    end
+
+    subgraph Train
+        Xt["X_t"]
+        yt["y_t"]
+    end
+
+```
+
+
+ <b>In car_price_prediction_project.ipynb in Folder Module 2</b> , Before splitting the dataframe, we will shuffle it, because sequential order of dataset can be a risk -- creating subsets that represent completely different distributions or biases.
+
+ After splitting the data, we will delete the target(price) from all 3 splits, so that it doesnt create problems later.
+
+## 3.4 Linear Regression
+
+<b>Goal:</b>
+
+![Linear Regression Matrix Formulation](https://latex.codecogs.com/svg.latex?%5Cdpi%7B150%7D%20%5Ccolor%7Bwhite%7D%20%5Cbegin%7Baligned%7D%20g%28X%29%20%26%5Capprox%20y%20%5C%5C%20%5Ctext%7Bwhere%3A%7D%20%5Cquad%20g%20%26%3A%20%5Ctext%7Bmodel%20%28linear%20regression%29%7D%20%5C%5C%20X%20%26%3A%20%5Ctext%7Bfeature%20matrix%7D%20%5C%5C%20y%20%26%3A%20%5Ctext%7Btarget%20%28Price%29%7D%20%5Cend%7Baligned%7D)
