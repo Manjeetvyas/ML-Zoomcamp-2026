@@ -1,4 +1,5 @@
-# Module 1
+# Module 1 -- Introduction
+
 ## 1.1  Introduction to machine learning
 
 <b>Model Training</b>
@@ -196,3 +197,7 @@ In this module we majorly learned how to submit homework of this zoomcamp using 
 ## 1.10 Summary of Module-1
 
 Module 1 completed.
+
+
+# Module 2 -- Car Price Prediction Project
+
