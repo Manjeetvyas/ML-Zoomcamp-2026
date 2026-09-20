@@ -201,7 +201,7 @@ Module 1 completed.
 
 # Module 2 -- Regression
 
-## 3.1 Project Overview - Car Price prediction Project
+## 2.1 Project Overview - Car Price prediction Project
 
 ### Project Objective
 Predict the price of a car based on a dataset from kaggle using logistic regression.
@@ -218,18 +218,18 @@ Predict the price of a car based on a dataset from kaggle using logistic regress
 
 ---
 
-## 3.2 Data Preparation
+## 2.2 Data Preparation
 
  <b>car_price_prediction_project.ipynb in Folder Module 2</b>
 
 
-## 3.3 Exploratory Data Analysis
+## 2.3 Exploratory Data Analysis
 
  <b>car_price_prediction_project.ipynb in Folder Module 2</b>
 
-## 3.4 Setting up Validation Framework
+## 2.4 Setting up Validation Framework
 
-***First we will split the data into 3 parts-> TRAIN , VALIDATION, TEST***
+***To implement Linear Regression we have to split the data into 3 parts-> TRAIN , VALIDATION, TEST***
 
 ```mermaid
 flowchart LR
@@ -251,12 +251,67 @@ flowchart LR
 ```
 
 
- <b>In car_price_prediction_project.ipynb in Folder Module 2</b> , Before splitting the dataframe, we will shuffle it, because sequential order of dataset can be a risk -- creating subsets that represent completely different distributions or biases.
+ 
+ 
+  Before splitting the dataframe, we will shuffle it, because sequential order of dataset can be a risk -- creating subsets that represent completely different distributions or biases.
 
- After splitting the data, we will delete the target(price) from all 3 splits, so that it doesnt create problems later.
+ After splitting the data, 
+ 1. Extract target vectors: Isolate the target variable into y_train, y_val, and y_test to keep features and labels distinct.
+   
+ 2. Drop target from feature sets: Remove the price column from X_train, X_val, and X_test to prevent target leakage.
+ 
+ 3. Apply log transformation: Transform the target vectors using $\log(1 + y)$ to reduce right-skewness, stabilize variance, and mitigate the impact of price outliers on error metrics.
 
-## 3.4 Linear Regression
+ refer car_price_prediction_project.ipynb in Folder Module 2.
+
+
+## 2.5 Linear Regression
 
 <b>Goal:</b>
 
-![Linear Regression Matrix Formulation](https://latex.codecogs.com/svg.latex?%5Cdpi%7B150%7D%20%5Ccolor%7Bwhite%7D%20%5Cbegin%7Baligned%7D%20g%28X%29%20%26%5Capprox%20y%20%5C%5C%20%5Ctext%7Bwhere%3A%7D%20%5Cquad%20g%20%26%3A%20%5Ctext%7Bmodel%20%28linear%20regression%29%7D%20%5C%5C%20X%20%26%3A%20%5Ctext%7Bfeature%20matrix%7D%20%5C%5C%20y%20%26%3A%20%5Ctext%7Btarget%20%28Price%29%7D%20%5Cend%7Baligned%7D)
+![Linear Regression Matrix Formulation](https://latex.codecogs.com/svg.latex?%5Cdpi%7B150%7D%20%5Ccolor%7Bwhite%7D%20%5Cbegin%7Baligned%7D%20g%28X%29%20%26%5Capprox%20y%20%5C%5C%20%5Ctext%7Bwhere%3A%7D%20%5Cquad%20g%20%26%3A%20%5Ctext%7Bmodel%20%28linear%20regression%29%7D%20%5C%5C%20X%20%26%3A%20%5Ctext%7Bfeature%20matrix%20(Train)%7D%20%5C%5C%20y%20%26%3A%20%5Ctext%7Btarget%20%28Price%29%7D%20%5Cend%7Baligned%7D)
+
+---
+<b>Lets perform Linear regression on a single row of data i.e df.iloc[10]</b> :
+
+
+$$g(x_i) = w_0 + \sum_{j=1}^3 w_j \cdot x_{ij}$$
+
+Where:
+
+* $x_i$ is the feature vector of row $i$ (the data point or observation).
+* $w_0$ is the base weight (bias / intercept).
+* $w_1$ to $w_3$ are the feature weights corresponding to each feature $j$.
+* $x_{ij}$ is the value of feature $j$ for row $i$.
+
+
+ refer car_price_prediction_project.ipynb in Folder Module 2.
+
+---
+
+## 2.6 Linear Regression: Vector Form
+
+***1. Implementing LR on a single vector of feature matrix using this approach:***
+
+$$g(x_i) = w_0 + \sum_{j=1}^3 w_j \cdot x_{ij}$$
+ 
+
+***2. Implementing LR on a single vector of feature matrix using new approach:***
+
+$$g(x_i) = \sum_{j=0}^{n} w_j \cdot x_{ij}$$
+
+This approach implements the linear regression using the bias-trick representation. Rather than separating the weight $w_0$ from the feature weights, it absorbs the bias term directly into the weight vector as its first element, creating $\mathbf{w} = [w_0, w_1, \dots, w_n]^T$. Correspondingly, the input feature vector has its first feature as 1, yielding $\mathbf{x}_i = [1, x_{i1}, \dots, x_{in}]^T$. 
+
+This approach makes dot product b/w weights and features vector possible without a additional add operation, because now the shape of both is same.
+
+***3. Implementing LR on a custom feature matrix using new approach:***
+
+$$\mathbf{g}(\mathbf{X}) = \mathbf{X}\mathbf{w}$$
+
+$$\begin{bmatrix} g(\mathbf{x}_1) \\ g(\mathbf{x}_2) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix} = \begin{bmatrix} 1 & x_{11} & x_{12} & \cdots & x_{1n} \\ 1 & x_{21} & x_{22} & \cdots & x_{2n} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & x_{m2} & \cdots & x_{mn} \end{bmatrix} \begin{bmatrix} w_0 \\ w_1 \\ w_2 \\ \vdots \\ w_n \end{bmatrix}$$
+
+ refer car_price_prediction_project.ipynb in Folder Module 2.
+
+
+## 2.7 Training Linear Regression: Normal Equation
+
