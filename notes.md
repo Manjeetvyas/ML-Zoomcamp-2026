@@ -314,6 +314,5 @@ $$
 \begin{bmatrix} 1 & x_{11} & \cdots & x_{1n} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & \cdots & x_{mn} \end{bmatrix}
 \begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix}
 $$
-
 ## 2.7 Training Linear Regression: Normal Equation
 
