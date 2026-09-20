@@ -308,8 +308,13 @@ This approach makes dot product b/w weights and features vector possible without
 
 $$\mathbf{g}(\mathbf{X}) = \mathbf{X}\mathbf{w}$$
 
-$$\begin{bmatrix} g(\mathbf{x}_1) \\ g(\mathbf{x}_2) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix} = \begin{bmatrix} 1 & x_{11} & x_{12} & \cdots & x_{1n} \\ 1 & x_{21} & x_{22} & \cdots & x_{2n} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & x_{m2} & \cdots & x_{mn} \end{bmatrix} \begin{bmatrix} w_0 \\ w_1 \\ w_2 \\ \vdots \\ w_n \end{bmatrix}$$
-
+$$
+\Large
+\begin{bmatrix} g(\mathbf{x}_1) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix}
+=
+\begin{bmatrix} 1 & x_{11} & \cdots & x_{1n} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & \cdots & x_{mn} \end{bmatrix}
+\begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix}
+$$
  refer car_price_prediction_project.ipynb in Folder Module 2.
 
 
