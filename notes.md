@@ -62,7 +62,7 @@ y= Target vector ```
 
 <b>What is CRISP-DM?</b>
 
-CRISP-DM stands for **CRoss Industry Standard Process for Data Mining**. It is a standard methodology for organizing and structuring end-to-end Machine Learning projects.
+CRISP-DM stands for **Cross Industry Standard Process for Data Mining**. It is a standard methodology for organizing and structuring end-to-end Machine Learning projects.
 
 It is an **iterative process** (not a one-way street), meaning insights gained in later steps often require looping back to refine earlier steps.
 
@@ -129,11 +129,11 @@ In this module we majorly learned how to submit homework of this zoomcamp using 
 
 ## 1.7 Introduction to Numpy
 
- <b>introduction_to_numpy.ipynb in Folder 1.7</b>
+ <b>refer introduction_to_numpy.ipynb in Folder 1.7</b>
 
 ## 1.8 Linear Algebra Refresher
 
- <b>linear_algebra_refresher.ipynb in Folder 1.8</b>
+ <b>refer linear_algebra_refresher.ipynb in Folder 1.8</b>
 
 
 <b>1. Vector Operations</b>
@@ -192,7 +192,7 @@ In this module we majorly learned how to submit homework of this zoomcamp using 
 
 ## 1.9 Introduction to Pandas
 
- <b>introduction_to_pandas.ipynb in Folder 1.9</b>
+ <b>refer introduction_to_pandas.ipynb in Folder 1.9</b>
 
 ## 1.10 Summary of Module-1
 
@@ -225,7 +225,7 @@ Predict the price of a car based on a dataset from kaggle using logistic regress
 
 ## 2.3 Exploratory Data Analysis
 
- <b>car_price_prediction_project.ipynb in Folder Module 2</b>
+ <b>refer car_price_prediction_project.ipynb in Folder Module 2</b>
 
 ## 2.4 Setting up Validation Framework
 
@@ -314,5 +314,70 @@ $$
 \begin{bmatrix} 1 & x_{11} & \cdots & x_{1n} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & \cdots & x_{mn} \end{bmatrix}
 \begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix}
 $$
-## 2.7 Training Linear Regression: Normal Equation
+
+where X is a square matrix with first column elements as 1.
+
+***refer car_price_prediction_project.ipynb in Folder Module 2.***
+
+
+## 2.7 Training Linear Regression Model: Normal Equation
+
+***Deriving the Normal Equation for Linear Regression***
+
+#### 1. Our Goal
+Our goal is to find a weight vector $w$ such that the predicted values closely approximate our target values $y$:
+$$g(X) = Xw \approx y$$
+
+---
+
+#### 2. The Ideal Scenario (If $X$ were Square and Invertible)
+If $X$ is a square and invertible matrix, we can solve for $w$ by multiplying both sides by the inverse of $X$ ($X^{-1}$):
+
+$$X^{-1} \cdot Xw = X^{-1} \cdot y$$
+
+Since $X^{-1} \cdot X = I$ (the Identity matrix):
+$$I \cdot w = X^{-1} \cdot y$$
+
+And since any matrix multiplied by the Identity matrix remains unchanged ($I \cdot w = w$):
+$$w = X^{-1} \cdot y$$
+
+---
+
+#### 3. The Catch with Rectangular Matrices
+There is a major catch with this approach: **to find a standard inverse, the matrix must be square** (equal rows and columns). 
+
+In real-world machine learning, our feature matrix $X$ is almost always a **rectangular matrix** (more samples/rows than features/columns). Because of this, a standard inverse $X^{-1}$ does not exist.
+
+---
+
+#### 4. Using the Gram Matrix to Fix Shape
+To turn our rectangular feature matrix into a square matrix, we multiply it by its transpose ($X^T$). 
+
+The result, $X^T X$, is a **Gram matrix**, which is **always a square matrix**. 
+
+While a Gram matrix's inverse doesn't *always* exist (it depends on conditions like linear independence and having enough samples), for our current intuition, we assume the inverse exists.
+
+---
+
+#### 5. Deriving the Normal Equation (Pseudoinverse)
+To solve for $w$ using the Gram matrix, we multiply both sides of our original equation by the pseudoinverse components:
+
+$$(X^T X)^{-1} \cdot X^T \cdot Xw = (X^T X)^{-1} \cdot X^T \cdot y$$
+
+*(Where $X^T X$ is our Gram matrix)*
+
+Since $(X^T X)^{-1} \cdot (X^T \cdot X) = I$ (the Identity matrix):
+$$I \cdot w = (X^T X)^{-1} \cdot X^T \cdot y$$
+
+Finally, since $I \cdot w = w$, we arrive at the final **Normal Equation** for Linear Regression:
+$$w = (X^T X)^{-1} X^T y$$
+
+---
+
+### Now that we know how to implement normal equation, lets implement this in code, here- ***car_price_prediction_project.ipynb in Folder Module 2.***
+
+This normal equation will help us to get ideal weights for our model's test and validation.
+
+## 2.8 Baseline Model for Car Price Prediction Project
+
 
