@@ -422,5 +422,28 @@ Now lets perform RMSE on y-validation and y-pred (came from X-validation and y-v
 
 
 ## 2.11 Feature Engineering
+In this section we will add a new feature to our feature matrix X-train, which will help us in RMSE.
+
+We used new feature 'age' which is calculated as (2017 - year).
+
+and as a result we can see now that the RMSE is much improved.
+
+***Refer car_price_prediction_project.ipynb in Folder Module 2.***
+
+## 2.12 Categorical Variable
+
+In this section we will add our several categorical variables from our df_train as new feature to our feature matrix X-train, which will help us in reducing RMSE.
+
+we will make list of all categorical columns we want to add as features.
+
+Then we will make a dictionary which will store 'column name' as key and 'Top 5 values of those columns' as value.
+
+then we will add these these columns as features to our X-train, one by one.
+
+Now we will run our model and check weather our RMSE improved or not.
+
+***Refer car_price_prediction_project.ipynb in Folder Module 2.***
+
+## 2.13 Regularization
 
 
