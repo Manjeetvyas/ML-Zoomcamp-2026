@@ -312,7 +312,6 @@ $$\begin{bmatrix} g(\mathbf{x}_1) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix}
 =
 \begin{bmatrix} 1 & x_{11} & \cdots & x_{1n} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & \cdots & x_{mn} \end{bmatrix}
 \begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix}$$
-
 where X is a square matrix with first column elements as 1.
 
 ***refer car_price_prediction_project.ipynb in Folder Module 2.***
