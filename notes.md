@@ -300,7 +300,8 @@ $$g(x_i) = w_0 + \sum_{j=1}^3 w_j \cdot x_{ij}$$
 
 $$g(x_i) = \sum_{j=0}^{n} w_j \cdot x_{ij}$$
 
-This approach implements the linear regression using the bias-trick representation. Rather than separating the weight $w_0$ from the feature weights, it absorbs the bias term directly into the weight vector as its first element, creating $\mathbf{w} = [w_0, w_1, \dots, w_n]^T$. Correspondingly, the input feature vector has its first feature as 1, yielding $\mathbf{x}_i = [1, x_{i1}, \dots, x_{in}]^T$. 
+This approach implements the linear regression using the bias-trick representation. Rather than separating the weight $w_0$ from the feature weights, it absorbs the bias term directly into the weight vector as its first element, creating $\mathbf{w} = [w_0, w_1, \dots, w_n]^T$. Correspondingly, the input feature vector has its first feature as 1, yielding 
+$\mathbf{x}_i = [1, x_{i1}, \dots, x_{in}]^T$. 
 
 This approach makes dot product b/w weights and features vector possible without a additional add operation, because now the shape of both is same.
 
@@ -312,21 +313,7 @@ $$\mathbf{g}(\mathbf{X}) = \mathbf{X}\mathbf{w}$$
 
 Expanding this out:
 
-
-
-$$
-\begin{bmatrix} g(\mathbf{x}_1) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix}
-=
-\begin{bmatrix} 1 & x_{11} & \cdots & x_{1n} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & \cdots & x_{mn} \end{bmatrix}
-\begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix}
-$$
-
-> $$
-> \begin{bmatrix} g(\mathbf{x}_1) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix} = 
-\begin{bmatrix} 1 & x_{11} & \cdots & x_{1n} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & \cdots & x_{mn} \end{bmatrix} \begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix},
-> $$
-
-
+![Matrix Equation](./assets/matrix_mul.png)
 
 ,where:
 - **X** is the feature matrix of shape $(m, n+1)$ — $m$ training examples (rows) and $n$ features (columns), with an extra column of 1's prepended to account for the bias/intercept term $w_0$.
@@ -493,11 +480,17 @@ So, We perform ridge regularization, using $(X^T X + \lambda I)$ , where Lambda 
 
 We took the synthetic alpha for now, in the next module we will see how to calculate alpha for your model.
 
+***Refer car_price_prediction_project.ipynb in Folder Module 2.***
+
+
 ## 2.14 Tuning the model
 
 In this section, we will take several samples of Regularization Alpha b/w 0 to 10, and iterate over them to find minimum RMSE.
 
 after iterating over all samples, we found out that our model already providing us minimum RMSE without adding regularization alpha, but none the less we have to add a regularization alpha for a safer side, so will choose the minimum one, i.e $\lambda$ = 0.00001
+
+***Refer car_price_prediction_project.ipynb in Folder Module 2.***
+
 
 ## 2.15 Using the Final Model
 
