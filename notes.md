@@ -312,12 +312,7 @@ $$\mathbf{g}(\mathbf{X}) = \mathbf{X}\mathbf{w}$$
 
 Expanding this out:
 
-$$
-\begin{bmatrix} g(\mathbf{x}_1) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix}
-=
-\begin{bmatrix} 1 & x_{11} & \cdots & x_{1n} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & \cdots & x_{mn} \end{bmatrix}
-\begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix},
-$$
+$$\begin{bmatrix} g(\mathbf{x}_1) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix} = \begin{bmatrix} 1 & x_{11} & \cdots & x_{1n} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{m1} & \cdots & x_{mn} \end{bmatrix} \begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix},$$
 
 where:
 - **X** is the feature matrix of shape $(m, n+1)$ — $m$ training examples (rows) and $n$ features (columns), with an extra column of 1's prepended to account for the bias/intercept term $w_0$.
