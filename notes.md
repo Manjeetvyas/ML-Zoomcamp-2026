@@ -306,7 +306,11 @@ This approach makes dot product b/w weights and features vector possible without
 
 ***3. Implementing LR on a custom feature matrix using new approach:***
 
+Instead of computing predictions one row at a time, we can vectorize the entire operation using matrix multiplication. This lets us compute predictions for **all** training examples in a single operation.
+
 $$\mathbf{g}(\mathbf{X}) = \mathbf{X}\mathbf{w}$$
+
+Expanding this out:
 
 $$
 \begin{bmatrix} g(\mathbf{x}_1) \\ \vdots \\ g(\mathbf{x}_m) \end{bmatrix}
@@ -315,9 +319,14 @@ $$
 \begin{bmatrix} w_0 \\ \vdots \\ w_n \end{bmatrix},
 $$
 
-where X is a square matrix with first column elements as 1.
+where:
+- **X** is the feature matrix of shape $(m, n+1)$ — $m$ training examples (rows) and $n$ features (columns), with an extra column of 1's prepended to account for the bias/intercept term $w_0$.
+- **w** is the weight vector of shape $(n+1, 1)$, containing the bias $w_0$ and the coefficients $w_1, \ldots, w_n$ for each feature.
+- **g(X)** is the resulting prediction vector of shape $(m, 1)$, where each entry $g(\mathbf{x}_i)$ is the predicted output for the $i$-th training example.
 
 ***refer car_price_prediction_project.ipynb in Folder Module 2.***
+
+
 
 
 ## 2.7 Training Linear Regression Model: Normal Equation
