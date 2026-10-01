@@ -509,6 +509,63 @@ and it will be tested on `X-test and y-test`
 5. Now its time to test our model:  We will select a single car data out of `X-test`.
 6. As we predicted the price of this car `y-pred` is very close to the real price of the car `y-test`, we can say our model is working Fantastic.
 ---
+# Module 3 -- Classification
+
+## 3.1 Project Overview - Churn prediction Project
+
+### Project Objective
+Predict weather a customer is churned or not, using binary classification.
+
+---
+
+### Project Plan
+1. Data preparation and setup validation framework using scikit-learn.
+2. EDA (Exploratory Data Analysis).
+3. Feature importance: Churn rate and risk ratio.
+4. Feature importance: Mutual information.
+5. Feature importance: Correlation.
+6. One hot encoding.
+7. Logistic regression.
+8. Training logistic regression with scikit-learn.
+9. Model interpretation.
+10. Using the model.
+
+---
+
+## 3.2 Data Preparation
+
+ <b>churn_prediction_project.ipynb in Folder Module 3</b>
+
+## 3.3 Setting up validation framework
+
+In this section we will setup the validation framework for our data, In ratio (60:20:20) using scikit-learn.
+
+Scikit-learn's fn train_test_split only breaks data into two parts, so we will first breaks data into df_full and df_test, then df_full into df_train and df_val.
+
+Then, we will isolate the target vector 'y' from all three splits.
+
+for more:
+ <b>churn_prediction_project.ipynb in Folder Module 3</b>
+ 
+## 3.4 EDA
+
+In this section, we found out that the churn rate of df_full = df_full.mean( ). This is because:
+
+For a binary target vector $y$ containing only $1$'s (churned) and $0$'s (retained), the arithmetic mean represents the proportion of positive outcomes:
+
+$$\text{Churn Rate} = \bar{y} = \frac{1}{N} \sum_{i=1}^{N} y_i = \frac{\text{Number of } 1\text{'s}}{\text{Total number of elements } (N)}$$
+
+**Where:**
+* $y_i \in \{0, 1\}$ (each customer's label)
+* $\sum y_i = \text{Total count of churned customers}$
+* $N = \text{Total number of customers in } \text{df\_full}$
+
+Then, we segregated the categorical and numerical cols in a list, which will help us to make the feature matrix.
+
+## 3.5 Feature Importance: Churn rate and risk ratio
+
+In this section, we try to find out the churn difference and risk ratio of all categorical column of our df_full.
+It is good that we have an idea of who likely to churn based on column category, but we also have to decide how much importance a category holds. 
 
 
 
