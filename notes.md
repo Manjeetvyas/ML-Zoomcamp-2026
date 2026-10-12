@@ -514,7 +514,7 @@ and it will be tested on `X-test and y-test`
 ## 3.1 Project Overview - Churn prediction Project
 
 ### Project Objective
-Predict weather a customer is churned or not, using binary classification.
+Predict whether a customer is churned or not, using binary classification.
 
 ---
 
@@ -565,8 +565,53 @@ Then, we segregated the categorical and numerical cols in a list, which will hel
 ## 3.5 Feature Importance: Churn rate and risk ratio
 
 In this section, we try to find out the churn difference and risk ratio of all categorical column of our df_full.
-It is good that we have an idea of who likely to churn based on column category, but we also have to decide how much importance a category holds. 
+It is good that we have an idea of who is likely to churn based on column category, but we also need to quantify how much risk weight (or predictive importance) each category holds.
 
+## 3.6 Feature Importance: Mutual information
+
+In this section, we learned about Mutual information - a concept from information theory, it tells us how much we can learn about one variable if we know the value of another. And we find out the mi value of every categorical column with respect to churn column.
+
+## 3.7 Feature Importance: Correlation
+
+In this section, we will learn about correlation coefficient aka (Pearson correlation)- a way to measure feature importance of numerical variables.
+And then we will calculate the correlation coefficient of churn col with other numerical cols.
+
+## 3.8 One-hot encoding
+
+>**One-Hot Encoding (OHE)** is a preprocessing technique that converts categorical text data into binary columns of `0`s and `1`s so machine learning models can process them without assuming a false mathematical hierarchy (such as treating text labels as ordinal numbers like 1, 2, and 3). It works by creating a separate binary column for each unique category, assigning a `1` if the category is present in a given row and a `0` otherwise. To prevent the dummy variable trap—a form of multicollinearity caused by perfect linear correlation among the new columns—it is standard practice to drop one category, keeping $N-1$ columns using settings like `drop_first=True` in Pandas or Scikit-learn.
+
+1. Now we will encode categorical and numerical variable of df_train using One Hot Encoding, implemented using scikit-learn's DictVectorizer fn.
+2. The  matrix recieved after this encoding will become our X_train and similarly, we will do once more OHE on df_val, which will become our X_val. Now we are ready to train our churn model.
+
+## 3.9 Logistic regression
+
+$$g(x_i) = y_i$$
+
+**Where:**
+* $g$ = Model
+* $x_i$ = Feature vector for customer $i$
+* $y_i$ = Target 
+
+---
+
+**such that:**
+
+
+$$g(x_i) = \text{SIGMOID}(W_0 + W^T x_i)$$
+
+$$0 \le g(x_i) \le 1$$
+
+---
+$$y_i \in \{0, 1\}$$
+
+* **$0$ (Negative):** No Churn
+* **$1$ (Positive):** Churn 
+
+---
+Now we will write the implementation of logistic regression and see how it differs from linear regression.
+
+
+## 3.10 Training logistic regression with scikit - learn
 
 
 
