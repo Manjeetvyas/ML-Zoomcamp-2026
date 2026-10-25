@@ -614,30 +614,175 @@ Now we will write the implementation of logistic regression and see how it diffe
 ## 3.10 Training logistic regression with scikit - learn
 
 
+# some part of module 3 and complete module 4 notes are missing rn.
 
 
 
+# Module 5 -- Model Deployment
+
+## 5.1 Intro / Session Overview
+
+### Session Objective
+Take the churn-prediction model trained earlier in a Jupyter notebook, save it, and make it available as a web service that other applications can call for predictions.
+
+---
+
+### Why Deployment Matters
+- Until now, the trained logistic regression model lived only inside a notebook.
+- In real applications, other services need to use the model without opening the notebook.
+- Example: a marketing service sends customer details to a **churn service**, receives a churn prediction, and may send a promotional email to customers likely to churn.
+
+---
+
+### Deployment Flow
+
+```text
+Jupyter Notebook
+   ↓ train model
+Model file (saved)
+   ↓ load model
+Churn Prediction Web Service
+   ↓ receives customer data / returns prediction
+Marketing Service
+   ↓ uses prediction for business action
+```
+
+---
+
+### Technology Stack
+
+| Layer | Tool | Purpose |
+|---|---|---|
+| Model | Logistic regression | Predict whether a customer will churn |
+| Model persistence | Pickle | Save the trained model to a file and load it later |
+| Web service | FastApi | Create a Python web API for predictions |
+| Python dependency isolation | Pipenv | Keep project dependencies separate from other projects |
+| System dependency isolation | Docker | Package the app and its environment into a container |
+| Cloud deployment | AWS Elastic Beanstalk | Deploy the Docker container to the cloud |
+
+---
+
+### Weekly Plan
+1. Save and load the trained model using **Pickle**.
+2. Understand **web services** and how applications communicate with them.
+3. Build a churn-prediction web service using **FastApi**.
+4. Manage Python dependencies with **Pipenv**.
+5. Package the service with **Docker**.
+6. Deploy the Docker container to **AWS Elastic Beanstalk**.
+7. Explore additional deployment options.
+
+---
+
+### Key Idea
+Deployment is built in layers:
+
+```text
+Model → Web service → Virtual environment → Docker container → Cloud
+```
+
+---
 
 
+## 5.2 Saving and loading the model
 
+### Session Objective
+Save the trained churn-prediction model and DictVectorizer to a file using **Pickle**, then convert the Jupyter notebook into reusable Python scripts for training and prediction.
 
+---
 
+### Notebook Setup
+The notebook combines the important code from previous weeks:
 
+- Data loading and cleaning
+- Train/validation split
+- Feature preparation with `DictVectorizer`
+- `train()` and `predict()` functions
+- Logistic Regression model with `C=1.0`
+- 5-fold cross-validation to check model performance
+- Final model training and AUC evaluation
 
+---
 
+### Why Save the Model?
+- The trained model exists only inside the Jupyter notebook session.
+- A web service cannot use a model that lives only in notebook memory.
+- To use the model in another process or service, we must save it to disk and load it later.
 
+---
 
+### Saving with Pickle
+`pickle` is a built-in Python library for serializing Python objects into binary files.
 
+We need to save **both**:
 
+- The `DictVectorizer`
+- The trained logistic regression model
 
+The vectorizer is required because it converts a customer dictionary into the feature matrix expected by the model.
 
+### Loading the Model
+After restarting the notebook kernel, the previously trained variables are gone. We can load the saved model file as if we were a separate process.
 
+---
 
+### Making a Prediction
+For a new customer:
 
+```python
+customer = {
+    'gender': 'female',
+    'seniorcitizen': 0,
+    'partner': 'yes',
+    'dependents': 'no',
+    # other customer features...
+}
+```
 
+- `dv.transform()` expects a list of dictionaries.
+- `X` is a 2D feature matrix.
+- `model.predict_proba()` returns probabilities for both classes.
+- Column `1` is the probability that the customer will churn.
 
+Example result:
 
+```text
+Churn probability = 0.63
+```
 
+A high churn probability may trigger a business action, such as sending the customer a promotion.
+
+---
+
+### Turning the Notebook into Scripts
+Running a notebook every time is inconvenient. Instead, export the notebook as a Python file and clean it into two scripts.
+
+#### `train.py`
+Responsible for:
+
+1. Loading and preparing data.
+2. Splitting data.
+3. Running cross-validation.
+4. Training the final model.
+5. Saving the vectorizer and model using Pickle.
+
+#### `predict.py`
+Responsible for:
+
+1. Loading the saved `DictVectorizer` and model.
+2. Receiving a customer dictionary.
+3. Converting the customer into a feature matrix.
+4. Predicting the churn probability.
+
+---
+
+### Key Takeaways
+- Use `pickle` to save both the model and the `DictVectorizer`.
+- Use `with open(..., 'wb')` to save and `with open(..., 'rb')` to load.
+- Separate training and prediction into `train.py` and `predict.py`.
+- Keep parameters and imports at the top of the script.
+- The saved model file can now be loaded by a web service.
+
+---
 
 
 
