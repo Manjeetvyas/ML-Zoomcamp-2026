@@ -784,11 +784,100 @@ Responsible for:
 
 ---
 
+# further sub module notes of module 5 is missing rn. 
+
+# Module 6 -- Trees (Decision Trees and Ensemble Learning)
 
 
+## 6.1 Credit Risk Scoring Project
 
 
+### Project Objective
+Predict the probability that a loan applicant will default (fail to repay a loan), so that a bank can decide whether to approve or reject the loan application.
 
 
+---
 
 
+### Project Plan
+1. Explore and clean the credit-risk dataset.
+2. Understand the target variable: whether a customer defaults or not.
+3. Learn decision trees and how they make predictions using if-then-else rules.
+4. Understand how decision-tree learning works internally.
+5. Tune decision-tree parameters.
+6. Use random forests by combining many decision trees.
+7. Learn gradient boosting using XGBoost.
+8. Select the best model for credit-risk scoring.
+
+
+---
+
+
+### Problem Statement
+A customer applies to a bank for a loan. The bank receives customer and application details and must decide whether to approve the loan.
+
+
+The model predicts the probability that the customer will default.
+
+
+```text
+g(customer) = P(default)
+```
+
+
+Example: if the model predicts `0.75`, the customer has a 75% estimated probability of defaulting.
+
+
+---
+
+
+### Target Variable
+This is a binary classification problem.
+
+
+| Value | Meaning |
+|---|---|
+| `0` | Customer repaid the loan / no default |
+| `1` | Customer defaulted |
+
+
+---
+
+
+## 6.2 Data Cleaning and Preparation
+
+
+### Session Objective
+Download the credit-risk dataset, clean it, decode encoded categorical variables, handle missing values, and split the data into train, validation, and test sets.
+
+
+---
+
+
+### Steps Covered
+1. Download the dataset.
+2. Load the CSV file with Pandas.
+3. Standardize column names to lowercase.
+4. Decode categorical variables from numbers to text.
+5. Replace placeholder missing values with `np.nan`.
+6. Remove records with unknown target status.
+7. Split the dataset into train, validation, and test sets.
+8. Convert the target variable into binary numeric format.
+
+
+---
+
+### Final Prepared Data
+After preparation:
+
+- Categorical variables are decoded into readable strings.
+- Placeholder missing values are converted to `NaN`.
+- Unknown target records are removed.
+- Data is split into train, validation, and test sets.
+- The target variable is binary: `1` for default and `0` for no default.
+- The feature DataFrames no longer contain the target column.
+
+
+---
+
+## module 6 further notes are pending.
